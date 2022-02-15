@@ -6,12 +6,12 @@ FROM ubuntu:18.04 AS builder
 RUN mkdir /app
 WORKDIR /app
 COPY . /app
-RUN chmod +x ./deps.sh && 
-        ./deps.sh &&
-        mkdir build &&
-        cd build &&
-        cmake .. &&
-        make && ls
+RUN chmod +x ./deps.sh \
+         && ./deps.sh \
+         && mkdir build \
+         && cd build \
+         && cmake .. \
+         && make && ls
 
 FROM ubuntu:18.04
 
@@ -20,7 +20,7 @@ WORKDIR /app
 COPY --from=builder /app/deps.sh  /app/.
 COPY --from=builder /app/build/image_rotate /app/.
 COPY --from=builder /app/plane.jpg /app/.
-RUN chmod +x ./deps.sh && 
-           ./deps.sh 
+RUN chmod +x ./deps.sh \ 
+         && ./deps.sh 
 CMD ["./image_rotate","../plane.jpg", "plane_out.jpg"]
 
