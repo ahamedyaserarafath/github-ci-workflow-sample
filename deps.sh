@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-apt-get update && apt-get install -y \
+sudo apt-get update && apt-get install -y \
     cmake \
     coreutils \
     gcc \
