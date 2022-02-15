@@ -52,4 +52,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: Docker build with tag
       - name: Execute the command to deploy the docker in the instance
-        run: echo "ssh username@10.01.1.1 'docker run ahamedyaserarafath/simple-cplusplus-app:latest' "
+        run: echo 'ssh username@10.01.1.1 "docker run ahamedyaserarafath/simple-cplusplus-app:latest" '
