@@ -2,6 +2,8 @@
 ## and run the image rotate command
 
 FROM ubuntu:18.04 AS builder
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
 
 RUN mkdir /app
 WORKDIR /app
