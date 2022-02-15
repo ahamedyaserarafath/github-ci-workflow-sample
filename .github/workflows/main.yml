@@ -8,13 +8,39 @@ on:
 
 jobs:
 
-  docker-build:
+  complie:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
       - name: Installing the dependencies
-        run: ./deps.sh
+        run: chmod +x ./deps.sh && ./deps.sh
       - name: Creating build directory for compliation
         run: mkdir build && cd build
       - name: Compling the build
         run: cmake .. && make
+  unitTest:
+    needs: complie
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Installing the dependencies
+        run: chmod +x ./deps.sh && ./deps.sh
+      - name: Creating build directory for compliation
+        run: mkdir build && cd build
+      - name: Compling the build
+        run: cmake .. && make
+      - name: Running unitest
+        run: make test  
+  dockerPush:
+    needs: unitTest
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker build with tag
+        run: docker build -t ahamedyaserarafath/simple-cplusplus-app:latest .
+      # ToDo: Need to send the username and password
+      # Commenting out for future working
+      - name: docker login with username and password
+        run: echo "docker login"
+      - name: Push the docker image 
+        run: echo "docker push ahamedyaserarafath/simple-cplusplus-app:latest"
