@@ -13,9 +13,11 @@ RUN chmod +x ./deps.sh \
          && mkdir build \
          && cd build \
          && cmake .. \
-         && make && ls
+         && make
 
 FROM ubuntu:18.04
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
 
 RUN mkdir /app
 WORKDIR /app
