@@ -1,0 +1,20 @@
+name: CI/CD pipeline for simple C++ application
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  docker-build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Installing the dependencies
+        run: ./dep.sh
+      - name: Creating build directory for compliation
+        run: mkdir build && cd build
+      - name: Compling the build
+        run: cmake .. && make
