@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Installing the dependencies
-        run: ./dep.sh
+        run: ./deps.sh
       - name: Creating build directory for compliation
         run: mkdir build && cd build
       - name: Compling the build
