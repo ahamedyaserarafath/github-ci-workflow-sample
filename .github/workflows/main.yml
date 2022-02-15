@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Installing the dependencies
-        run: chmod +x ./deps.sh && ./deps.sh
+        run: chmod +x ./deps.sh && sudo ./deps.sh
       - name: Creating build directory for compliation
         run: mkdir build
       - name: Compling the build
@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Installing the dependencies
-        run: chmod +x ./deps.sh && ./deps.sh
+        run: chmod +x ./deps.sh && sudo ./deps.sh
       - name: Creating build directory for compliation
         run: mkdir build
       - name: Compling the build
