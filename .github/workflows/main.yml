@@ -15,9 +15,9 @@ jobs:
       - name: Installing the dependencies
         run: chmod +x ./deps.sh && ./deps.sh
       - name: Creating build directory for compliation
-        run: mkdir build && cd build
+        run: mkdir build
       - name: Compling the build
-        run: cmake .. && make
+        run: cd build && cmake .. && make
   unitTest:
     needs: complie
     runs-on: ubuntu-18.04
@@ -26,11 +26,11 @@ jobs:
       - name: Installing the dependencies
         run: chmod +x ./deps.sh && ./deps.sh
       - name: Creating build directory for compliation
-        run: mkdir build && cd build
+        run: mkdir build
       - name: Compling the build
-        run: cmake .. && make
+        run: cd build && cmake .. && make
       - name: Running unitest
-        run: make test  
+        run: cd build && make test
   dockerPush:
     needs: unitTest
     runs-on: ubuntu-18.04
